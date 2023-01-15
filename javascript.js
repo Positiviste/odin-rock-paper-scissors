@@ -1,4 +1,7 @@
 console.log("Hello World !");
+
+// Make computer choose randomly rock, paper or scissors.
+
 function getComputerChoice() {
     let computerChoice = Math.floor(Math.random() * 3);
     if (computerChoice == 0) {
@@ -10,6 +13,10 @@ function getComputerChoice() {
     }
     return (computerChoice);
 }
+
+// Play a round.
+// Input = Player & Computer inputs.
+// Change score accordingly to result then send the result as a message.
 
 function playRound(playerSelection, computerSelection) {
     let ps = (playerSelection.toLowerCase());
@@ -29,6 +36,8 @@ function playRound(playerSelection, computerSelection) {
     return (message);
 }
 
+// Play "PlayRound" until someone have 3 points.
+
 function game() {
     while (playerScore < 3 && computerScore < 3) {
         let playerChoice = prompt("Enter Rock, Paper or Scissors", "Rock");
@@ -36,7 +45,11 @@ function game() {
     }
 }
 
+// Scoring
+
 let playerScore = 0;
 let computerScore = 0;
+
+// Launch the game !
 
 game();
