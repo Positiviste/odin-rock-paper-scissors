@@ -31,7 +31,8 @@ function playRound(playerSelection, computerSelection) {
 
 function game() {
     while (playerScore < 3 && computerScore < 3) {
-        console.log(playRound(getComputerChoice(), getComputerChoice()));
+        let playerChoice = prompt("Enter Rock, Paper or Scissors", "Rock");
+        console.log(playRound(playerChoice, getComputerChoice()));
     }
 }
 
