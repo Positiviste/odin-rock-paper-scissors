@@ -14,6 +14,13 @@ function getComputerChoice() {
     return (computerChoice);
 }
 
+// Ask Player's choice. Default is Rock.
+
+function getPlayerChoice() {
+    playerChoice = prompt("Enter Rock, Paper or Scissors", "Rock");
+    return playerChoice;
+}
+
 // Play a round.
 // Input = Player & Computer inputs.
 // Change score accordingly to result then send the result as a message.
@@ -40,8 +47,7 @@ function playRound(playerSelection, computerSelection) {
 
 function game() {
     while (playerScore < 3 && computerScore < 3) {
-        let playerChoice = prompt("Enter Rock, Paper or Scissors", "Rock");
-        console.log(playRound(playerChoice, getComputerChoice()));
+        console.log(playRound(getPlayerChoice(), getComputerChoice()));
     }
 }
 
