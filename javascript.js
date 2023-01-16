@@ -28,6 +28,7 @@ function getPlayerChoice() {
 function playRound(playerSelection, computerSelection) {
     let ps = (playerSelection.toLowerCase());
     let cs = (computerSelection.toLowerCase());
+    let message = "";
     if (ps == cs) {
         message = `It\'s a tie ! You both played ${ps} !`
     } else if ((ps == "rock" && cs == "paper")
@@ -48,8 +49,14 @@ function game() {
     while (playerScore < 3 && computerScore < 3) {
         console.log(playRound(getPlayerChoice(), getComputerChoice()));
     }
+    getFinalResult();
 }
 
+function getFinalResult() {
+    playerScore > computerScore ?
+        console.log("Congratulation for this little victory.") :
+        console.log("I wanna be humble but ... I absolutly crushed you !");
+}
 // Scoring
 
 let playerScore = 0;
