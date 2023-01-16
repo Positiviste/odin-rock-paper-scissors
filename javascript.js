@@ -28,7 +28,6 @@ function getPlayerChoice() {
 function playRound(playerSelection, computerSelection) {
     let ps = (playerSelection.toLowerCase());
     let cs = (computerSelection.toLowerCase());
-    let result = "";
     if (ps == cs) {
         message = `It\'s a tie ! You both played ${ps} !`
     } else if ((ps == "rock" && cs == "paper")
