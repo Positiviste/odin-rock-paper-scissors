@@ -2,6 +2,23 @@
 let playerScore = 0;
 let computerScore = 0;
 
+// Reset button
+const resetButton = document.querySelector('#resetButton');
+// Rock, paper, scissors buttons
+const playerButtons = document.querySelectorAll('.player-buttons > button');
+
+// Listen for rock, paper, scissors buttons pressed
+playerButtons.forEach((button) => {
+    button.addEventListener('click', () => {
+        playRound(button.id, getComputerChoice());
+    })
+})
+
+// Listen for reset button pressed
+resetButton.addEventListener('click', () => {
+    resetGame();
+});
+
 // Make computer choose randomly rock, paper or scissors.
 function getComputerChoice() {
     let computerChoice = Math.floor(Math.random() * 3);
@@ -15,15 +32,6 @@ function getComputerChoice() {
     return (computerChoice);
 }
 
-// Listen for rock, paper, scissors buttons pressed
-const playerButtons = document.querySelectorAll('.player-buttons > button');
-playerButtons.forEach((button) => {
-    button.addEventListener('click', () => {
-        playRound(button.id, getComputerChoice());
-    })
-})
-
-// Play a round.
 // Change score accordingly to result and send correct round message to be printed.
 function playRound(playerSelection, computerSelection) {
     let ps = playerSelection;
@@ -63,11 +71,14 @@ function changeResultMessage() {
 function checkEndGame() {
     if (playerScore == 3) {
         changeEndGameMessage("playerWin");
+        endGame();
     } else if (computerScore == 3) {
         changeEndGameMessage("computerWin");
+        endGame();
     }
 }
 
+// Winner announcement
 function changeEndGameMessage(winner) {
     let finalResult = document.querySelector('#finalResult');
     if (winner == "playerWin") {
@@ -77,13 +88,27 @@ function changeEndGameMessage(winner) {
     } else {
         finalResult.textContent = message;
     }
-    endGame();
 }
 
 // Listen for rock, paper, scissors buttons pressed
 function endGame() {
     playerButtons.forEach((button) => {
         button.disabled = true;
-        button.style.color='#ccc';
+        button.style.color = '#ccc';
     })
+    resetButton.hidden = false;
 };
+
+// reset
+function resetGame() {
+    playerButtons.forEach((button) => {
+        button.disabled = false;
+        button.style.color = '#000';
+    })
+    resetButton.hidden = true;
+    currentRound.textContent = "";
+    currentResult.textContent = "";
+    finalResult.textContent = "";
+    playerScore = 0;
+    computerScore = 0;
+}
