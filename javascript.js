@@ -43,35 +43,36 @@ function playRound(playerSelection, computerSelection) {
     }
     changeRoundMessage(message);
     changeResultMessage();
+    checkEndGame();
 }
 
 // change round result below buttons
-function changeRoundMessage (message) {
-    console.log(message);
+function changeRoundMessage(message) {
     let currentRound = document.querySelector('#currentRound');
-    currentRound.textContent=message;
+    currentRound.textContent = message;
+}
+
+function changeResultMessage() {
+    let currentResult = document.querySelector('#currentResult');
+    currentResult.textContent = "Player score : " + playerScore + " - Compter score : " + computerScore;
 }
 
 // Check if someone have 3 points.
 function checkEndGame() {
-    if (playerScore == 3 || computerScore == 3) {
-    changeEndGameMessage();
+    if (playerScore == 3) {
+        changeEndGameMessage("playerWin");
+    } else if (computerScore == 3) {
+        changeEndGameMessage("computerWin");
     }
 }
 
-function changeResultMessage () {
-    let currentResult = document.querySelector('#currentResult');
-    currentResult.textContent= "Player score : " + playerScore + " - Compter score : " +computerScore;
+function changeEndGameMessage(winner) {
+    let finalResult = document.querySelector('#finalResult');
+    if (winner == "playerWin") {
+        finalResult.textContent = "Congratulation for this little victory."
+    } else if (winner == "computerWin") {
+        finalResult.textContent = "I wanna be humble but ... I absolutly crushed you !"
+    } else {
+        finalResult.textContent = message;
+    }
 }
-
-// Give final result.
-function getFinalResult() {
-    playerScore > computerScore ?
-        console.log("Congratulation for this little victory.") :
-        console.log("I wanna be humble but ... I absolutly crushed you !");
-}
-
-
-// Launch the game !
-
-// game();
