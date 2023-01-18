@@ -35,10 +35,11 @@ function playRound(playerSelection, computerSelection) {
         || (ps == "paper" && cs == "scissors")
         || (ps == "scissors" && cs == "rock")) {
         computerScore += 1
-
+        ps = ps.charAt(0).toUpperCase() + ps.slice(1);
         message = `You loose this round ! ${ps} is beaten by ${cs} !`;
     } else {
         playerScore += 1
+        ps = ps.charAt(0).toUpperCase() + ps.slice(1);
         message = `You win this round ! ${ps} beats ${cs} !`;
     }
     changeRoundMessage(message);
