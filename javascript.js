@@ -6,37 +6,28 @@ let computerScore = 0;
 function getComputerChoice() {
     let computerChoice = Math.floor(Math.random() * 3);
     if (computerChoice == 0) {
-        computerChoice = "Rock";
+        computerChoice = "rock";
     } else if (computerChoice == 1) {
-        computerChoice = "Paper";
+        computerChoice = "paper";
     } else {
-        computerChoice = "Scissors";
+        computerChoice = "scissors";
     }
     return (computerChoice);
 }
 
-// // Ask Player's choice. Default is Rock.
-// function getPlayerChoice() {
-//     playerChoice = prompt("Enter Rock, Paper or Scissors", "Rock");
-//     return playerChoice;
-// }
-
 // Listen for button pressed
-// const playerButtonsGroup = document.querySelector('.player-buttons');
-// const playerButtons = playerButtonsGroup.querySelectorAll(':scope > button');
 const playerButtons = document.querySelectorAll('.player-buttons > button');
 playerButtons.forEach((button) => {
     button.addEventListener('click', () => {
-        console.log(button.id);
+        playRound(button.id, getComputerChoice());
     })
 })
 
 // Play a round.
-// Input = Player & Computer inputs.
-// Change score accordingly to result then send the result as a message.
+// Change score accordingly to result and send correct round message to be printed.
 function playRound(playerSelection, computerSelection) {
-    let ps = (playerSelection.toLowerCase());
-    let cs = (computerSelection.toLowerCase());
+    let ps = playerSelection;
+    let cs = computerSelection;
     let message = "";
     if (ps == cs) {
         message = `It\'s a tie ! You both played ${ps} !`
@@ -44,20 +35,33 @@ function playRound(playerSelection, computerSelection) {
         || (ps == "paper" && cs == "scissors")
         || (ps == "scissors" && cs == "rock")) {
         computerScore += 1
-        message = `You loose this round ! ${playerSelection} is beaten by ${computerSelection} !`;
+
+        message = `You loose this round ! ${ps} is beaten by ${cs} !`;
     } else {
         playerScore += 1
-        message = `You win this round ! ${playerSelection} beats ${computerSelection} !`;
+        message = `You win this round ! ${ps} beats ${cs} !`;
     }
-    return (message);
+    changeRoundMessage(message);
+    changeResultMessage();
 }
 
-// Play "PlayRound" until someone have 3 points.
-function game() {
-    while (playerScore < 3 && computerScore < 3) {
-        console.log(playRound(getPlayerChoice(), getComputerChoice()));
+// change round result below buttons
+function changeRoundMessage (message) {
+    console.log(message);
+    let currentRound = document.querySelector('#currentRound');
+    currentRound.textContent=message;
+}
+
+// Check if someone have 3 points.
+function checkEndGame() {
+    if (playerScore == 3 || computerScore == 3) {
+    changeEndGameMessage();
     }
-    getFinalResult();
+}
+
+function changeResultMessage () {
+    let currentResult = document.querySelector('#currentResult');
+    currentResult.textContent= "Player score : " + playerScore + " - Compter score : " +computerScore;
 }
 
 // Give final result.
