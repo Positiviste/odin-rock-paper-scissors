@@ -15,7 +15,7 @@ function getComputerChoice() {
     return (computerChoice);
 }
 
-// Listen for button pressed
+// Listen for rock, paper, scissors buttons pressed
 const playerButtons = document.querySelectorAll('.player-buttons > button');
 playerButtons.forEach((button) => {
     button.addEventListener('click', () => {
@@ -52,6 +52,7 @@ function changeRoundMessage(message) {
     currentRound.textContent = message;
 }
 
+// Score message
 function changeResultMessage() {
     let currentResult = document.querySelector('#currentResult');
     currentResult.textContent = "Player score : " + playerScore + " - Compter score : " + computerScore;
@@ -75,4 +76,13 @@ function changeEndGameMessage(winner) {
     } else {
         finalResult.textContent = message;
     }
+    endGame();
 }
+
+// Listen for rock, paper, scissors buttons pressed
+function endGame() {
+    playerButtons.forEach((button) => {
+        button.disabled = true;
+        button.style.color='#ccc';
+    })
+};
